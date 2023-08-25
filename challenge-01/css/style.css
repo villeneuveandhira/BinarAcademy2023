@@ -360,6 +360,23 @@ img.author-img {
 /* =================== */
 /* === FAQ-SECTION === */
 /* =================== */
+.list-faq .accordion-item {
+    margin-bottom: 16px;
+    border-radius: 4px;
+    border-top: none;
+    background: #FFF;
+}
+
+.list-faq .accordion-button {
+    border-radius: 4px;
+    border-top: 1px solid #D4D4D4;
+    background: #FFF;
+}
+
+.list-faq .accordion-button.collapsed {
+    margin-bottom: 1px;
+}
+
 .text-faq {
     width: 30%;
 }
@@ -570,6 +587,14 @@ img.author-img {
 
     .bg-started p {
         margin-bottom: 32px;
+        padding: 0 5%;
+    }
+    
+    .started-section h2 {
+        font-size: 24px;
+        line-height: 36px;
+        padding-left: 10%;
+        padding-right: 10%;
     }
 
     .started-section {
