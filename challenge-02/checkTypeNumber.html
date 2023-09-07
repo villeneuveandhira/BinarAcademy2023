@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>challenge-02</title>
+</head>
+<body>
+    <h1>Villeneuve Andhira Suwandhi</h1>
+    <h3>Binar Academy_FEJS-1</h3>
+    <h4>challenge-02 nomor 2:</h4>
+    <p>
+        Buatlah sebuah function yang berfungsi mendeteksi
+        apakah sebuah angka termasuk angka genap atau
+        ganjil.<br>
+
+        Function ini akan menerima satu parameter, yaitu :<br>
+        1. givenNumber ⇒ angka yang akan dicheck oleh
+        function<br><br>
+        
+        Kriteria function yang harus kamu buat:<br>
+        • Beri nama function tersebut checkTypeNumber<br>
+        • Menggunakan arrow function<br>
+        • function ini harus return data dengan tipe string<br>
+        • function ini harus return data berupa GENAP ATAU
+        GANJIL<br>
+        • function ini harus memiliki validasi terhadap tipe data
+        dari parameter yang diterima.<br>
+    
+    </p>
+    <script>
+        const checkTypeNumber = (givenNumber) => {
+            // validasi terhadap tipe data parameter yang diterima
+            if (givenNumber == null) {
+                // *no parameter
+                return "Error: Bro where is the parameter?";
+            } else if (typeof givenNumber !== 'number' || isNaN(givenNumber)) {
+                // *invalid data type
+                return "Error: Invalid data type";
+            }
+
+            // memeriksa masukan apakah angka genap / ganjil
+            if(givenNumber %2 === 0) {
+                return "GENAP";
+            } else {
+                return "GANJIL";
+            }
+        }
+
+        /* EXPECTED */
+        console.log(checkTypeNumber(10)) // => "GENAP"
+        console.log(checkTypeNumber(3)) // => "GANJIL"
+        console.log(checkTypeNumber("3")) // => "Error: Invalid data type"
+        console.log(checkTypeNumber({})) // => "Error: Invalid data type"
+        console.log(checkTypeNumber([])) // => "Error: Invalid data type"
+        console.log(checkTypeNumber()) // => "Error: Bro where is the parameter?"
+    </script>
+</body>
+</html>

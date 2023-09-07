@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>challenge-02</title>
+</head>
+<body>
+    <h1>Villeneuve Andhira Suwandhi</h1>
+    <h3>Binar Academy_FEJS-1</h3>
+    <h4>challenge-02 nomor 5:</h4>
+    <p>
+        Hari ini Toko buku milik Ibu Daniela berhasil menjual banyak sekali
+        buku-buku novel. Gambar disamping adalah data penjualan
+        buku-buku novel yang dijual di Toko buku milik Ibu Daniela, dalam
+        format array of object.
+        <br><br>
+
+        Tugas kamu adalah membuat sebuah function yang berfungsi
+        membantu Ibu Daniela untuk mendapatkan informasi berupa Total
+        Keuntungan, Total Modal, Produk Buku Terlaris, Penulis Buku
+        Terlaris dan Persentase Keuntungan dari data penjualan yang telah
+        disediakan diatas.<br>
+
+        Function yang kamu buat ini akan me-return sebuah data yang
+        berbentuk sebuah object yang dari beberapa properti.<br><br>
+
+        Function ini akan menerima satu parameter, yaitu:<br>
+        1. dataPenjualan ⇒ Array yang berisi beberapa object, object terdiri dari properti yang memiliki
+        informasi penjualan product.<br><br>
+
+        Kriteria function:<br>
+        1. Beri nama function tersebut getInfoPenjualan<br>
+        2. function ini harus return data dengan tipe object<br>
+        3. Data object harus berisi properti seperti yang dijelaskan sebelumnya yaitu totalKeuntungan,
+        totalModal, produkBukuTerlaris, persentaseKeuntungan, dan penulisTerlaris<br>
+        4. function ini harus memiliki validasi terhadap tipe data dari parameter yang diterima.<br>
+    </p>
+    <script>
+        // data:
+        const dataPenjualanNovel = [
+            {
+                idProduct: 'BOOK002421',
+                namaProduk: 'Pulang - Pergi',
+                penulis: 'Tere Liye',
+                hargaBeli: 60000,
+                hargaJual: 86000,
+                totalTerjual: 150,
+                sisaStok: 17,
+            },
+            {
+                idProduct: 'BOOK002351',
+                namaProduk: 'Selamat Tinggal',
+                penulis: 'Tere Liye',
+                hargaBeli: 75000,
+                hargaJual: 103000,
+                totalTerjual: 171,
+                sisaStok: 20,
+            },
+            {
+                idProduct: 'BOOK002941',
+                namaProduk: 'Garis Waktu',
+                penulis: 'Fiersa Besari',
+                hargaBeli: 67000,
+                hargaJual: 99000,
+                totalTerjual: 213,
+                sisaStok: 5,
+            },
+            {
+                idProduct: 'BOOK002871',
+                namaProduk: 'Laskar Pelangi',
+                penulis: 'Andrea Hirata',
+                hargaBeli: 55000,
+                hargaJual: 68000,
+                totalTerjual: 20,
+                sisaStok: 56,
+            },
+        ];
+
+        /*
+        // BERIKUT ADALAH CONTOH OBJECT YANG HARUS DI RETURN PADA FUNCTION YAG AKAN KAMU BUAT
+        // SEMUA VALUE PADA PROPERTI OBJECT DIBAWAH INI ADALAH CONTOH DATA SAJA,
+        // JADI ITU BUKAN HASIL PERHITUNGAN SEBENARNYA
+        
+        // PADA PROPERTI totalKeuntungan dan totalModal, NILAI YANG DIHASILKAN HARUS DALAM
+        // BERUPA FORMAT RUPIAH, CONTOH totalKeuntungan 14650000 DIJADIKAN FORMAT RUPIAH
+        // MENJADI 'RP. 14.650.000'
+        {
+            totalKeuntungan: 'Rp. 10.000.000', // harus dalam format rupiah
+            totalModal: 'Rp.6.000.000',
+            persentaseKeuntungan: '60%', // berdasarkan totalModal dan totalJual
+            produkBukuTerlaris: 'BUKU TERLARIS BERDASARKAN DATA DIATAS' // namaProduct yang paling banyak dijual
+            penulisTerlaris: 'PENULIS TERLARIS BERDASARKAN DATA DIATAS' // namaPenulis yang bukunya paling banyak dijual
+        }
+        */
+
+        const getInfoPenjualan = (dataPenjualan) => {
+            // validasi terhadap tipe data parameter
+            if (!Array.isArray(dataPenjualan)) {
+                return "ERROR: Parameter harus berupa array";
+            }
+
+            // menghitung total modal dan total penjualan
+            let totalModal = 0;
+            let totalKeuntungan = 0;
+            
+            for (const penjualan of dataPenjualan) {
+                // memastikan properti hargaBeli, hargaJual, dan totalTerjual ada dan bertipe number
+                if (
+                    typeof penjualan.hargaBeli === 'number' &&
+                    typeof penjualan.hargaJual === 'number' &&
+                    typeof penjualan.totalTerjual === 'number'
+                ) {
+                    // menghitung total modal dan total keuntungan
+                    totalModal += penjualan.hargaBeli * (penjualan.totalTerjual + penjualan.sisaStok);
+                    totalKeuntungan += (penjualan.hargaJual - penjualan.hargaBeli) * penjualan.totalTerjual;
+                }
+            }
+
+            // menghitung persentase keuntungan
+            const persentaseKeuntungan = ((totalKeuntungan / totalModal) * 100).toFixed(2) + "%";
+
+            // format totalModal dan totalKeuntungan menjadi format Rupiah
+            const formattedTotalModal = 'Rp. ' + totalModal.toLocaleString();
+            const formattedKeuntungan = 'Rp. ' + totalKeuntungan.toLocaleString();
+
+            // mencari produk buku terlaris
+            const produkBukuTerlaris = dataPenjualan.reduce((prevData, currentData) => {
+                return currentData.totalTerjual > prevData.totalTerjual ? currentData : prevData;
+            }, dataPenjualan[0]);
+
+            // mencari penulis paling laris
+            const totalPenjualanPenulis = [];
+
+            // looping data penjualan novel
+            dataPenjualan.forEach((item) => {
+                // init
+                const { penulis, totalTerjual } = item;
+                const existingItem = totalPenjualanPenulis.find((element) => element.penulis === penulis);
+
+                // untuk setiap buku yang sama penulisnya akan dijumlahkan
+                if (existingItem) {
+                    // dijumlahkan buku total terjualnya
+                    existingItem.totalTerjual += totalTerjual;
+                } else {
+                    // disimpan di variabel total penjualan penulis
+                    totalPenjualanPenulis.push({ penulis, totalTerjual });
+                }
+            });
+
+            // mencari penulis terlaris
+            const penulisTerlaris = totalPenjualanPenulis.reduce((prev, current) => {
+                return prev.totalTerjual > current.totalTerjual ? prev : current;
+            });
+
+            // output
+            return {
+                totalKeuntungan: formattedKeuntungan,
+                totalModal: formattedTotalModal,
+                persentaseKeuntungan: persentaseKeuntungan,
+                produkBukuTerlaris: produkBukuTerlaris.namaProduk,
+                penulisTerlaris: penulisTerlaris.penulis,
+            };
+        }
+
+        /* EXPECTED RESULT */
+        console.log(getInfoPenjualan(dataPenjualanNovel));
+        // => OBJECT dengan format seperti yang disebutkan diatas
+    </script>
+</body>
+</html>

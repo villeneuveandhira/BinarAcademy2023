@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>challenge-02</title>
+</head>
+<body>
+    <h1>Villeneuve Andhira Suwandhi</h1>
+    <h3>Binar Academy_FEJS-1</h3>
+    <h4>challenge-02 nomor 1:</h4>
+    <p>
+        Buatlah sebuah function dengan nama changeWord
+        yang berfungsi untuk menggantikan sebuah kata
+        didalam sebuah kalimat.<br>
+        
+        Function ini akan menerima 3 parameter, yaitu :<br>
+        1. selectedText => Kata yang terdapat pada sebuah
+        kalimat dan merupakan kata yang akan diganti
+        nantinya.<br>
+        2. changedText => Kata yang akan menjadi pengganti
+        pada sebuah kalimat nantinya.<br>
+        3. text => Sebuah kalimat.<br>
+    </p>
+    <script>
+        function changeWord(selectedText, changedText, text) {
+            // fungsi untuk mengubah kata
+            return text.replace(selectedText, changedText);
+        }
+
+        const kalimat1 = 'Andini sangat mencintai kamu selamanya'
+        const kalimat2 = 'Gunung bromo tak akan mampu menggambarkan besarnya cintaku padamu'
+
+        /* EXPECTED RESULT */
+        console.log(changeWord('mencintai', 'membenci', kalimat1));
+        // => 'Andini sangat membenci kamu selamanya'
+        console.log(changeWord("bromo", "semeru", kalimat2));
+        // => 'Gunung semeru tak akan mampu menggambarkan besarnya cintaku padamu'
+    </script>
+</body>
+</html>

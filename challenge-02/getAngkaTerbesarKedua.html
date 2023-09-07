@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>challenge-02</title>
+</head>
+<body>
+    <h1>Villeneuve Andhira Suwandhi</h1>
+    <h3>Binar Academy_FEJS-1</h3>
+    <h4>challenge-02 nomor 3:</h4>
+    <p>
+        Buatlah sebuah function yang berfungsi untuk mendapatkan angka terbesar kedua dari sebuah array.<br>
+
+        Misal diberikan sebuah array yang terdiri dari beberapa angka [2,3,5,6,6,4], berdasarkan data dari array tersebut<br>
+        dapat kita simpulkan bahwasanya angka terbesar dari array tersebut adalah 6, angka kedua terbesar adalah 5,<br>
+        dan angka ketiga terbesar adalah 4. Maka dari itu function yang akan kamu buat ini akan me-return angka<br>
+        kedua terbesar pada array yang telah diberikan, yaitu angka 5.<br>
+
+        Function ini akan menerima satu parameter, yaitu :<br>
+        1. dataNumbers ⇒ Array yang berisi beberapa angka<br><br>
+
+        Kriteria function yang harus kamu buat:<br>
+        1. Beri nama function tersebut getAngkaTerbesarKedua<br>
+        2. function ini harus return data dengan tipe number<br>
+        3. function ini harus return data angka terbesar kedua dari angka-angka yang diberikan di dalam array<br>
+        4. function ini harus memiliki validasi terhadap tipe data dari parameter yang diterima.<br>
+    </p>
+    <script>
+        const getAngkaTerbesarKedua = (data) => {
+            // validasi terhadap tipe data parameter
+            if (data == null) {
+                // tidak ada parameter                
+                return "Error: Bro where is the parameter?";
+            } else if (!Array.isArray(data) || data.length < 2) {
+                // parameter minimal 2 index elements
+                return "ERROR: Parameter is not an array with at least two elements";
+            }
+            
+            // cara pertama untuk,
+            // menghapus duplikasi dan mengurutkan array secara descending
+            const sortedArray = Array.from(new Set(data)).sort((a, b) => b - a);
+
+            /*
+            cara kedua:
+            const sortedArray = [];
+            for (let i = 0; i < data.length; i++) {
+                const num = data[i];
+                if (!sortedArray.includes(num)) {
+                sortedArray.push(num);
+                }
+            }
+            sortedArray.sort((a, b) => b - a); */
+            
+            // memeriksa jika hasil sorting tidak ada hasil
+            if (sortedArray.length < 2) {
+                return "ERROR: There is no second largest number in this array";
+            }
+
+            return sortedArray[1];
+        }
+
+        const dataAngka = [9,4,7,7,4,3,2,2,8]
+        // const dataAngka = [0]
+        // const dataAngka = [1,1]
+        
+        /* EXPECTED RESULT */
+        console.log(getAngkaTerbesarKedua(dataAngka))
+        // => 8
+        console.log(getAngkaTerbesarKedua(0))
+        // => "ERROR : (Kamu jelasin ini errornya apa dan kenapa)"
+        console.log(getAngkaTerbesarKedua())
+        // => "ERROR : (Kamu jelasin ini errornya apa dan kenapa)"
+    </script>
+</body>
+</html>

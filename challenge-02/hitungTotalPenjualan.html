@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>challenge-02</title>
+</head>
+<body>
+    <h1>Villeneuve Andhira Suwandhi</h1>
+    <h3>Binar Academy_FEJS-1</h3>
+    <h4>challenge-02 nomor 4:</h4>
+    <p>
+        Hari ini Toko Pak Aldi berhasil menjual banyak sepatu.
+        Pada gambar disamping terdapat data sepatu-sepatu
+        yang terjual dari toko Pak Aldi dalam bentuk array of
+        object.<br><br>
+
+        Tugas kamu adalah membuat sebuah function yang
+        berfungsi membantu Pak Aldi untuk menghitung total
+        seluruh sepatu yang terjual.<br>
+
+        Function ini akan menerima satu parameter, yaitu :<br>
+        1. dataPenjualan ⇒ Array yang berisi beberapa object,
+        object terdiri dari properti yang memiliki informasi
+        penjualan product.<br><br>
+
+        Kriteria function:<br>
+        1. Beri nama function tersebut getTotalPenjualan<br>
+        2. function ini harus return data dengan tipe number<br>
+        3. function ini harus return total penjumlahan dari
+        properti totalTerjual pada data yang diberikan<br>
+        4. function ini harus memiliki validasi terhadap tipe
+        data dari parameter yang diterima.<br>
+    </p>
+    <script>
+        const dataPenjualanPakAldi = [
+            {
+                namaProduct : 'Sepatu Futsal Nike Vapor Academy 8',
+                hargaSatuan : 760000,
+                kategori : "Sepatu Sport",
+                totalTerjual : 90,
+            },
+            {
+                namaProduct : 'Sepatu Warrior Tristan Black Brown High - Original',
+                hargaSatuan : 960000,
+                kategori : "Sepatu Sneaker",
+                totalTerjual : 37,
+            },{
+                namaProduct : 'Sepatu Warrior Tristan Maroon High - Original',
+                hargaSatuan : 360000,
+                kategori : "Sepatu Sneaker",
+                totalTerjual : 90,
+            },{
+                namaProduct : 'Sepatu Warrior Rainbow Tosca Corduroy - [BNIB] Original',
+                hargaSatuan : 120000,
+                kategori : "Sepatu Sneaker",
+                totalTerjual : 90,
+            },
+        ]
+
+        const hitungTotalPenjualan = (dataPenjualan) => {
+            // validasi terhadap tipe data parameter
+            if (!Array.isArray(dataPenjualan)) {
+                // memastikan parameter adalah array
+                return "ERROR: Parameter harus berupa array";
+            }
+
+            // untuk menghitung total penjualan
+            let total = 0;
+            for (const penjualan of dataPenjualan) {
+                // memastikan totalTerjual ada dan bertipe number
+                if (typeof penjualan.totalTerjual === 'number') {
+                    total += penjualan.totalTerjual;
+                }
+            }
+
+            return total;
+        }
+
+        /* EXPECTED RESULT */
+        console.log(hitungTotalPenjualan(dataPenjualanPakAldi))
+        // => 307
+    </script>
+</body>
+</html>
