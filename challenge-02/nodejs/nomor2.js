@@ -1,6 +1,6 @@
 const checkTypeNumber = (givenNumber) => {
     // validasi terhadap tipe data parameter yang diterima
-    if (givenNumber == null) {
+    if (typeof givenNumber === 'undefined' || givenNumber === null) {
         // *no parameter
         return "Error: Bro where is the parameter?";
     } else if (typeof givenNumber !== 'number' || isNaN(givenNumber)) {
