@@ -66,7 +66,7 @@ const TodoList = ({isRefresh, setRefresh}) => {
     <>
       {/* buttons & features */}
       <div className="filter-and-search">
-        <h3>TodoList</h3>
+        <h1>Todo-List</h1>
         <div className="search-box">
           <input
             type="text"
@@ -104,7 +104,7 @@ const TodoList = ({isRefresh, setRefresh}) => {
       {/* data 'todo list-item' */}
       <ul id="todo-list">
         {filteredTodos.length === 0 ? (
-          <h3 className="result-text">No task todo.</h3>
+          <h3 className="result-text">There is no TODO left.</h3>
         ) : (
           filteredTodos.map((todo) => (
             <TodoItem

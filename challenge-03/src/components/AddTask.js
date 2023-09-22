@@ -20,7 +20,7 @@ const AddTask = ({setRefresh}) => {
 			setTask("")
 			setRefresh(true)
 			setTimeout(() => {
-				alert('New task added.')
+				alert('New todo added.')
 			}, 500)
         });
   }

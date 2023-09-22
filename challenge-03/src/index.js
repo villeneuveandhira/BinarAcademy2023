@@ -7,7 +7,9 @@ import App from './App';
 ReactDOM.render(
   <React.StrictMode>
     {/* shows the app */}
-    <App />
+    <div className='content'>
+      <App />
+    </div>
   </React.StrictMode>,
   document.getElementById('root')
 );
